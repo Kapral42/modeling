@@ -55,6 +55,3 @@ print '\nPython random'
 print 'x^2', x2(array)
 print 'Auto correlation\n', auto_cor(array)
 
-
-
-
