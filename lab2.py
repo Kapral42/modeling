@@ -28,6 +28,31 @@ def gen_graph_deep(n_node, max_deep):
 
     return edges
 
+def gen_graph_degree(n_node, max_degree):
+    nodes = range(n_node)
+    use_nodes = []
+    edges = []
+    degrees = {}
+
+    root = random.randint(0, n_node - 1)
+    use_nodes.append(root)
+    nodes.remove(root)
+    degrees[root] = 0
+    while len(nodes) > 0:
+        x = use_nodes[random.randint(0, len(use_nodes) - 1)]
+        y = nodes[random.randint(0, len(nodes) - 1)]
+
+        if degrees[x] + 1 > max_degree:
+            continue
+
+        use_nodes.append(y)
+        nodes.remove(y)
+        degrees[y] = 1
+        degrees[x] += 1
+        edges.append(str(x) + '-' + str(y))
+
+    return edges
+
 def graph_drow(nodes, edges, name):
     colors = ['coral', 'lightblue2', 'lightgrey', 'aquamarine1', \
               'gold', 'deeppink1', 'deeppink1', 'orange']
@@ -45,9 +70,12 @@ def graph_drow(nodes, edges, name):
 
 def main(argv=None):
     nodes = 200
-    deep = 30
+    deep = 20
+    degree = 20
     edges = gen_graph_deep(nodes, deep)
     graph_drow(range(nodes), edges, "deep")
+    edges = gen_graph_degree(nodes, degree)
+    graph_drow(range(nodes), edges, "degree")
 
 if __name__ == "__main__":
     sys.exit(main())
