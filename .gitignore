@@ -1,4 +1,6 @@
 .ropeproject
 *.gv
 *.gv.png
+*.out
+*.png
 
